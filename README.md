@@ -36,475 +36,520 @@ Deploy the website.
 Upload to GitHub Pages for free hosting.
 
 ## PROGRAM
-index.html :
-```
-<!DOCTYPE html>
 
+```
+#index.html
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Todo App</title>
+    <title>Advanced To-Do List</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-```
-My Todo List
----
-Organize your tasks easily
-```
-<!-- Add Todo -->
-<div class="input-section">
-    <input type="text" id="todoInput" placeholder="Enter a new task...">
-    <button id="addBtn">Add Task</button>
-</div>
+    <div class="container">
 
-<!-- Todo Statistics -->
-<div class="task-info">
-    <span id="totalTasks">Total: 0</span>
-    <span id="completedTasks">Completed: 0</span>
-    <span id="remainingTasks">Remaining: 0</span>
-</div>
+        <div class="top-bar">
+            <h1>Advanced To-Do List</h1>
 
-<!-- Filter Buttons -->
-<div class="filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="active">Active</button>
-    <button class="filter-btn" data-filter="completed">Completed</button>
-</div>
+            <button id="themeBtn">🌙</button>
+        </div>
 
-<!-- Todo List -->
-<ul id="todoList"></ul>
+        <div class="input-section">
 
-<!-- Clear Completed -->
-<button id="clearCompleted">Clear Completed</button>
-```
----
-<script src="script.js"></script>
-```
+            <input 
+                type="text" 
+                id="taskInput" 
+                placeholder="Enter task"
+            >
+
+            <input 
+                type="date" 
+                id="dueDate"
+            >
+
+            <select id="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+
+            <button id="addBtn">Add</button>
+
+        </div>
+
+        <div class="filter-section">
+
+            <button 
+                class="filter-btn" 
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button 
+                class="filter-btn" 
+                data-filter="completed"
+            >
+                Completed
+            </button>
+
+            <button 
+                class="filter-btn" 
+                data-filter="pending"
+            >
+                Pending
+            </button>
+
+        </div>
+
+        <ul id="taskList"></ul>
+
+    </div>
+
+    <!-- IMPORTANT -->
+    <script src="script.js"></script>
 
 </body>
 </html>
 ```
----
-style.css :
-```
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  }
-
-body {
-min-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-padding: 50px 20px;
-background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-.container {
-width: 100%;
-max-width: 650px;
-background-color: white;
-padding: 30px;
-border-radius: 15px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-h1 {
-text-align: center;
-color: #333;
-margin-bottom: 8px;
-}
-
-.subtitle {
-text-align: center;
-color: #777;
-margin-bottom: 25px;
-}
-
-/* Input Section */
-.input-section {
-display: flex;
-gap: 10px;
-margin-bottom: 20px;
-}
-
-.input-section input {
-flex: 1;
-padding: 13px;
-border: 2px solid #ddd;
-border-radius: 8px;
-font-size: 16px;
-outline: none;
-}
-
-.input-section input:focus {
-border-color: #667eea;
-}
-
-#addBtn {
-padding: 13px 20px;
-border: none;
-border-radius: 8px;
-background-color: #667eea;
-color: white;
-font-size: 15px;
-cursor: pointer;
-}
-
-#addBtn:hover {
-background-color: #5366d8;
-}
-
-/* Task Statistics */
-.task-info {
-display: flex;
-justify-content: space-between;
-background-color: #f5f5f5;
-padding: 12px;
-border-radius: 8px;
-margin-bottom: 20px;
-font-size: 14px;
-color: #555;
-}
-
-/* Filter Buttons */
-.filters {
-display: flex;
-justify-content: center;
-gap: 10px;
-margin-bottom: 20px;
-}
-
-.filter-btn {
-padding: 8px 15px;
-border: none;
-border-radius: 20px;
-background-color: #e5e5e5;
-cursor: pointer;
-font-size: 14px;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-background-color: #667eea;
-color: white;
-}
-
-/* Todo List */
-#todoList {
-list-style: none;
-margin-bottom: 20px;
-}
-
-.todo-item {
-display: flex;
-align-items: center;
-justify-content: space-between;
-background-color: #f8f8f8;
-padding: 13px;
-margin-bottom: 10px;
-border-radius: 8px;
-gap: 10px;
-}
-
-.todo-left {
-display: flex;
-align-items: center;
-gap: 12px;
-flex: 1;
-}
-
-.todo-text {
-word-break: break-word;
-font-size: 16px;
-color: #333;
-}
-
-.todo-text.completed {
-text-decoration: line-through;
-color: #999;
-}
-
-/* Action Buttons */
-.actions {
-display: flex;
-gap: 8px;
-}
-
-.edit-btn,
-.delete-btn {
-border: none;
-padding: 7px 10px;
-border-radius: 5px;
-color: white;
-cursor: pointer;
-}
-
-.edit-btn {
-background-color: #f0a500;
-}
-
-.delete-btn {
-background-color: #e74c3c;
-}
-
-.edit-btn:hover {
-background-color: #d99000;
-}
-
-.delete-btn:hover {
-background-color: #c0392b;
-}
-
-/* Clear Completed Button */
-#clearCompleted {
-width: 100%;
-padding: 12px;
-border: none;
-border-radius: 8px;
-background-color: #333;
-color: white;
-font-size: 15px;
-cursor: pointer;
-}
-
-#clearCompleted:hover {
-background-color: #555;
-}
-
-/* Responsive Design */
-@media (max-width: 550px) {
-.container {
-padding: 20px;
-}
 
 ```
----
-input-section { flex-direction: column; }
+#style.css
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-#addBtn { width: 100%; }
+body{
+    background: #0f172a;
+    color: white;
+    min-height: 100vh;
 
-.task-info { flex-direction: column; gap: 8px; text-align: center; }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.todo-item { align-items: flex-start; flex-direction: column; }
+    padding: 20px;
+    transition: 0.3s;
+}
 
-.todo-left { width: 100%; }
+.container{
+    background: #1e293b;
+    width: 100%;
+    max-width: 700px;
 
-.actions { align-self: flex-end; }
+    padding: 25px;
+    border-radius: 16px;
+}
 
-```
+.top-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    margin-bottom: 20px;
+}
+
+#themeBtn{
+    background: #334155;
+    border: none;
+    color: white;
+
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.input-section{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input,
+select{
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+#addBtn{
+    padding: 12px;
+    border: none;
+
+    background: #2563eb;
+    color: white;
+
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#addBtn:hover{
+    background: #1d4ed8;
+}
+
+.filter-section{
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.filter-btn{
+    padding: 10px 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    background: #334155;
+    color: white;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    background: #334155;
+
+    padding: 15px;
+    border-radius: 10px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.task-info{
+    flex: 1;
+}
+
+.completed{
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.priority{
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.high{
+    color: red;
+}
+
+.medium{
+    color: orange;
+}
+
+.low{
+    color: lightgreen;
+}
+
+.task-buttons{
+    display: flex;
+    gap: 8px;
+}
+
+.task-buttons button{
+    border: none;
+
+    padding: 8px 12px;
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.complete-btn{
+    background: green;
+    color: white;
+}
+
+.edit-btn{
+    background: orange;
+    color: white;
+}
+
+.delete-btn{
+    background: crimson;
+    color: white;
+}
+
+/* Light Mode */
+
+.light-mode{
+    background: #f1f5f9;
+    color: black;
+}
+
+.light-mode .container{
+    background: white;
+}
+
+.light-mode li{
+    background: #e2e8f0;
+}
+
+.light-mode .filter-btn,
+.light-mode #themeBtn{
+    background: #cbd5e1;
+    color: black;
+}
+
+/* Responsive */
+
+@media(max-width: 700px){
+
+    .input-section{
+        grid-template-columns: 1fr;
+    }
+
+    li{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-buttons{
+        width: 100%;
+    }
+
+    .task-buttons button{
+        flex: 1;
+    }
 }
 ```
----
-script.js :
+
 ```
-const todoInput = document.getElementById("todoInput");
+#script.js
 const addBtn = document.getElementById("addBtn");
-const todoList = document.getElementById("todoList");
-const clearCompletedBtn = document.getElementById("clearCompleted");
+const taskInput = document.getElementById("taskInput");
+const taskList = document.getElementById("taskList");
 
-const totalTasks = document.getElementById("totalTasks");
-const completedTasks = document.getElementById("completedTasks");
-const remainingTasks = document.getElementById("remainingTasks");
+const dueDate = document.getElementById("dueDate");
+const priority = document.getElementById("priority");
+
+const themeBtn = document.getElementById("themeBtn");
 
 const filterButtons = document.querySelectorAll(".filter-btn");
 
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
-let currentFilter = "all";
 
-/* Save Todos to Local Storage */
-function saveTodos() {
-localStorage.setItem("todos", JSON.stringify(todos));
+// TASK ARRAY
+let tasks = [];
+
+
+// SAVE TASKS
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-/* Display Todos */
-function displayTodos() {
-todoList.innerHTML = "";
 
-```
----
-const filteredTodos = todos.filter(function(todo) { if (currentFilter === "active") { return !todo.completed; }
-```
-if (currentFilter === "completed") {
-    return todo.completed;
+// LOAD TASKS
+function loadTasks() {
+
+    const storedTasks = localStorage.getItem("tasks");
+
+    if(storedTasks) {
+        tasks = JSON.parse(storedTasks);
+    }
+
+    displayTasks();
 }
 
-return true;
-```
----
+
+// DISPLAY TASKS
+function displayTasks(filter = "all") {
+
+    taskList.innerHTML = "";
+
+    tasks.forEach((task, index) => {
+
+        // FILTER CONDITIONS
+        if(filter === "completed" && !task.completed){
+            return;
+        }
+
+        if(filter === "pending" && task.completed){
+            return;
+        }
+
+        // CREATE LIST ITEM
+        const li = document.createElement("li");
+
+        // TASK INFO
+        const taskInfo = document.createElement("div");
+        taskInfo.classList.add("task-info");
+
+        if(task.completed){
+            taskInfo.classList.add("completed");
+        }
+
+        // PRIORITY CLASS
+        let priorityClass = "";
+
+        if(task.priority === "High"){
+            priorityClass = "high";
+        }
+        else if(task.priority === "Medium"){
+            priorityClass = "medium";
+        }
+        else{
+            priorityClass = "low";
+        }
+
+        taskInfo.innerHTML = `
+            <strong>${task.text}</strong>
+            <div>Due: ${task.date || "No Date"}</div>
+            <div class="priority ${priorityClass}">
+                Priority: ${task.priority}
+            </div>
+        `;
+
+        // BUTTON CONTAINER
+        const buttonDiv = document.createElement("div");
+        buttonDiv.classList.add("task-buttons");
+
+        // DONE BUTTON
+        const doneBtn = document.createElement("button");
+
+        doneBtn.innerText = "Done";
+        doneBtn.classList.add("complete-btn");
+
+        doneBtn.addEventListener("click", function(){
+
+            tasks[index].completed = !tasks[index].completed;
+
+            saveTasks();
+            displayTasks(filter);
+        });
+
+        // EDIT BUTTON
+        const editBtn = document.createElement("button");
+
+        editBtn.innerText = "Edit";
+        editBtn.classList.add("edit-btn");
+
+        editBtn.addEventListener("click", function(){
+
+            const updatedTask = prompt("Edit Task", task.text);
+
+            if(updatedTask !== null && updatedTask.trim() !== ""){
+
+                tasks[index].text = updatedTask;
+
+                saveTasks();
+                displayTasks(filter);
+            }
+        });
+
+        // DELETE BUTTON
+        const deleteBtn = document.createElement("button");
+
+        deleteBtn.innerText = "Delete";
+        deleteBtn.classList.add("delete-btn");
+
+        deleteBtn.addEventListener("click", function(){
+
+            tasks.splice(index, 1);
+
+            saveTasks();
+            displayTasks(filter);
+        });
+
+        // APPEND BUTTONS
+        buttonDiv.appendChild(doneBtn);
+        buttonDiv.appendChild(editBtn);
+        buttonDiv.appendChild(deleteBtn);
+
+        // APPEND ELEMENTS
+        li.appendChild(taskInfo);
+        li.appendChild(buttonDiv);
+
+        taskList.appendChild(li);
+    });
+}
+
+
+// ADD TASK
+addBtn.addEventListener("click", function(){
+
+    const text = taskInput.value.trim();
+
+    if(text === ""){
+        alert("Please enter a task");
+        return;
+    }
+
+    const task = {
+
+        text: text,
+        date: dueDate.value,
+        priority: priority.value,
+        completed: false
+    };
+
+    tasks.push(task);
+
+    saveTasks();
+    displayTasks();
+
+    // CLEAR INPUTS
+    taskInput.value = "";
+    dueDate.value = "";
 });
 
-filteredTodos.forEach(function(todo) { const li = document.createElement("li"); li.className = "todo-item";
-```
-const leftDiv = document.createElement("div");
-leftDiv.className = "todo-left";
 
-const checkbox = document.createElement("input");
-checkbox.type = "checkbox";
-checkbox.checked = todo.completed;
+// FILTER BUTTONS
+filterButtons.forEach(function(button){
 
-checkbox.addEventListener("change", function() {
-    todo.completed = checkbox.checked;
-    saveTodos();
-    displayTodos();
+    button.addEventListener("click", function(){
+
+        const filter = button.dataset.filter;
+
+        displayTasks(filter);
+    });
 });
 
-const taskText = document.createElement("span");
-taskText.className = "todo-text";
 
-if (todo.completed) {
-    taskText.classList.add("completed");
-}
+// DARK / LIGHT MODE
+themeBtn.addEventListener("click", function(){
 
-taskText.textContent = todo.text;
+    document.body.classList.toggle("light-mode");
 
-leftDiv.appendChild(checkbox);
-leftDiv.appendChild(taskText);
-
-const actionsDiv = document.createElement("div");
-actionsDiv.className = "actions";
-
-/* Edit Button */
-const editBtn = document.createElement("button");
-editBtn.textContent = "Edit";
-editBtn.className = "edit-btn";
-
-editBtn.addEventListener("click", function() {
-    const newText = prompt("Edit your task:", todo.text);
-
-    if (newText !== null && newText.trim() !== "") {
-        todo.text = newText.trim();
-        saveTodos();
-        displayTodos();
+    if(document.body.classList.contains("light-mode")){
+        themeBtn.innerText = "☀️";
+    }
+    else{
+        themeBtn.innerText = "🌙";
     }
 });
 
-/* Delete Button */
-const deleteBtn = document.createElement("button");
-deleteBtn.textContent = "Delete";
-deleteBtn.className = "delete-btn";
 
-deleteBtn.addEventListener("click", function() {
-    todos = todos.filter(function(item) {
-        return item.id !== todo.id;
-    });
-
-    saveTodos();
-    displayTodos();
-});
-
-actionsDiv.appendChild(editBtn);
-actionsDiv.appendChild(deleteBtn);
-
-li.appendChild(leftDiv);
-li.appendChild(actionsDiv);
-
-todoList.appendChild(li);
+// LOAD TASKS ON START
+loadTasks();
 ```
----
-});
-
-updateStatistics();
-```
-
-}
-
-/* Add New Todo */
-function addTodo() {
-const task = todoInput.value.trim();
-
-```
----
-if (task === "") { alert("Please enter a task!"); return; }
-
-const newTodo = { id: Date.now(), text: task, completed: false };
-
-todos.push(newTodo);
-
-saveTodos(); displayTodos();
-
-todoInput.value = ""; todoInput.focus();
-```
-
-}
-
-/* Add Task Button */
-addBtn.addEventListener("click", addTodo);
-
-/* Add Task Using Enter Key */
-todoInput.addEventListener("keypress", function(event) {
-if (event.key === "Enter") {
-addTodo();
-}
-});
-
-/* Filter Tasks */
-filterButtons.forEach(function(button) {
-button.addEventListener("click", function() {
-filterButtons.forEach(function(btn) {
-btn.classList.remove("active");
-});
-```
-button.classList.add("active");
-
-currentFilter = button.dataset.filter;
-
-displayTodos();
-```
----
-});
-```
-
-});
-
-/* Clear Completed Tasks */
-clearCompletedBtn.addEventListener("click", function() {
-todos = todos.filter(function(todo) {
-return !todo.completed;
-});
-
-```
----
-saveTodos(); displayTodos();
-```
-
-});
-
-/* Update Statistics */
-function updateStatistics() {
-const total = todos.length;
-
-```
----
-const completed = todos.filter(function(todo) { return todo.completed; }).length;
-
-const remaining = total - completed;
-
-totalTasks.textContent = "Total: " + total; completedTasks.textContent = "Completed: " + completed; remainingTasks.textContent = "Remaining: " + remaining;
-
-
-```
-
-}
-
-/* Load Todos When Page Opens */
-displayTodos();
-```
----
-
-
 ## OUTPUT
 
-
-
-
+![alt text](<Screenshot (244).png>) 
+![alt text](<Screenshot (243).png>) 
+![alt text](<Screenshot (242).png>)
 
 ## RESULT
+
 The program for creating To-do list using JavaScript is executed successfully.
