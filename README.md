@@ -546,11 +546,9 @@ loadTasks();
 ```
 ## OUTPUT
 
-![alt text](<Screenshot (244).png>)  
-
-![alt text](<Screenshot (243).png>) 
-
-![alt text](<Screenshot (242).png>)
+<img width="837" height="433" alt="image" src="https://github.com/user-attachments/assets/ac09751f-44ee-4e27-8142-f7d9ea4ff4a8" />
+<img width="836" height="431" alt="image" src="https://github.com/user-attachments/assets/80435c6c-6fd7-48f8-99d1-7696f5a8dd0d" />
+<img width="833" height="431" alt="image" src="https://github.com/user-attachments/assets/aca458e0-6c6f-43a3-8187-5a66c02bd1e6" />
 
 ## RESULT
 
