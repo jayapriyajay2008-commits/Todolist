@@ -479,7 +479,8 @@ themeBtn.addEventListener("click", function(){
 
 // LOAD TASKS ON START
 loadTasks();
-```
+
+
 ## OUTPUT
 
 ![alt text](image.png)
