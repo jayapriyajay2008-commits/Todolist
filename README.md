@@ -37,8 +37,8 @@ Upload to GitHub Pages for free hosting.
 
 ## PROGRAM
 
+index.html
 ```
-#index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +56,7 @@ Upload to GitHub Pages for free hosting.
         <div class="top-bar">
             <h1>Advanced To-Do List</h1>
 
-            <button id="themeBtn">🌙</button>
+            <button id="themeBtn">💡</button>
         </div>
 
         <div class="input-section">
@@ -117,227 +117,163 @@ Upload to GitHub Pages for free hosting.
 </body>
 </html>
 ```
-
+style.css
 ```
-#style.css
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-    background: #0f172a;
-    color: white;
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
-    transition: 0.3s;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
+
+/* MAIN CONTAINER */
 
 .container{
-    background: #1e293b;
-    width: 100%;
-    max-width: 700px;
-
-    padding: 25px;
-    border-radius: 16px;
+    width:90%;
+    max-width:800px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-.top-bar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* TOP BAR */
 
-    margin-bottom: 20px;
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.top-bar h1{
+    color:#333;
+    font-size:28px;
 }
 
 #themeBtn{
-    background: #334155;
-    border: none;
-    color: white;
-
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
+    border:none;
+    background:#667eea;
+    color:white;
+    padding:10px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
 }
+
+/* INPUT SECTION */
 
 .input-section{
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto;
-
-    gap: 10px;
-    margin-bottom: 20px;
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-input,
-select{
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
+.input-section input,
+.input-section select{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
 }
+
+#taskInput{
+    flex:1;
+}
+
+.input-section input:focus,
+.input-section select:focus{
+    border-color:#667eea;
+}
+
+/* ADD BUTTON */
 
 #addBtn{
-    padding: 12px;
-    border: none;
-
-    background: #2563eb;
-    color: white;
-
-    border-radius: 8px;
-    cursor: pointer;
+    background:#667eea;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
 #addBtn:hover{
-    background: #1d4ed8;
+    background:#5568d8;
 }
 
-.filter-section{
-    display: flex;
-    gap: 10px;
+/* FILTER SECTION */
 
-    margin-bottom: 20px;
+.filter-section{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
 }
 
 .filter-btn{
-    padding: 10px 15px;
-
-    border: none;
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    background: #334155;
-    color: white;
+    padding:9px 18px;
+    border:none;
+    border-radius:20px;
+    background:#eee;
+    cursor:pointer;
 }
 
-ul{
-    list-style: none;
+.filter-btn:hover{
+    background:#667eea;
+    color:white;
 }
 
-li{
-    background: #334155;
+/* TASK LIST */
 
-    padding: 15px;
-    border-radius: 10px;
-
-    margin-bottom: 12px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 15px;
-    flex-wrap: wrap;
+#taskList{
+    list-style:none;
 }
 
-.task-info{
-    flex: 1;
+/* TASK ITEM */
+
+#taskList li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#f7f7f7;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:10px;
+    border-left:5px solid #667eea;
 }
 
-.completed{
-    text-decoration: line-through;
-    opacity: 0.6;
-}
+/* RESPONSIVE DESIGN */
 
-.priority{
-    margin-top: 5px;
-    font-size: 14px;
-}
-
-.high{
-    color: red;
-}
-
-.medium{
-    color: orange;
-}
-
-.low{
-    color: lightgreen;
-}
-
-.task-buttons{
-    display: flex;
-    gap: 8px;
-}
-
-.task-buttons button{
-    border: none;
-
-    padding: 8px 12px;
-    border-radius: 6px;
-
-    cursor: pointer;
-}
-
-.complete-btn{
-    background: green;
-    color: white;
-}
-
-.edit-btn{
-    background: orange;
-    color: white;
-}
-
-.delete-btn{
-    background: crimson;
-    color: white;
-}
-
-/* Light Mode */
-
-.light-mode{
-    background: #f1f5f9;
-    color: black;
-}
-
-.light-mode .container{
-    background: white;
-}
-
-.light-mode li{
-    background: #e2e8f0;
-}
-
-.light-mode .filter-btn,
-.light-mode #themeBtn{
-    background: #cbd5e1;
-    color: black;
-}
-
-/* Responsive */
-
-@media(max-width: 700px){
+@media(max-width:700px){
 
     .input-section{
-        grid-template-columns: 1fr;
+        flex-direction:column;
     }
 
-    li{
-        flex-direction: column;
-        align-items: flex-start;
+    .container{
+        padding:20px;
     }
 
-    .task-buttons{
-        width: 100%;
+    .top-bar h1{
+        font-size:22px;
     }
 
-    .task-buttons button{
-        flex: 1;
+    .filter-section{
+        flex-wrap:wrap;
     }
+
 }
+script.js
 ```
-
-```
-#script.js
 const addBtn = document.getElementById("addBtn");
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
@@ -546,10 +482,7 @@ loadTasks();
 ```
 ## OUTPUT
 
-<img width="837" height="433" alt="image" src="https://github.com/user-attachments/assets/ac09751f-44ee-4e27-8142-f7d9ea4ff4a8" />
-<img width="836" height="431" alt="image" src="https://github.com/user-attachments/assets/80435c6c-6fd7-48f8-99d1-7696f5a8dd0d" />
-<img width="833" height="431" alt="image" src="https://github.com/user-attachments/assets/aca458e0-6c6f-43a3-8187-5a66c02bd1e6" />
-
+![alt text](image.png)
 ## RESULT
 
 The program for creating To-do list using JavaScript is executed successfully.
